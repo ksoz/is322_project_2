@@ -7,10 +7,10 @@ import App from './App';
 import Tasks from './Tasks';
 import AddTask from './AddTask';
 
-const Content = ({page, toDoList, progressList, finList, currentPageIsAddTask, currentPageIsTaskBoard}) => {
+const Content = ({page, addForm, toDoList, progressList, finList, currentPageIsAddTask, currentPageIsTaskBoard}) => {
         return (
             <div id="content">
-                <AddTask/>
+                {addForm}
                 <div id="col_to_do">
                     <h3>To Do</h3>  
                     {toDoList}

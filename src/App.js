@@ -31,8 +31,15 @@ const App = () => {
     const [finishedTasks, setFinished] = useState([
 
     ])
-    const updateTask = (id, task_new, task_in_progress) => {
-        setInProgress(progressTasks.push((toDoTasks) => toDoTasks.id !== id));
+    const addTask = (task) => {
+        console.log(task)
+        const id = Math.floor(Math.random() * 1000) + 1;
+        const name = "Task" + id
+        const newTask = {id, name,...task};
+        setToDo([...toDoTasks, newTask])
+    }    
+    const updateTask = (task, id, task_new, task_in_progress) => {
+        console.log(task)
     }
 
     const deleteTask = (id) => {
@@ -41,7 +48,7 @@ const App = () => {
     return (
             <div className="container">
                 <Header/>
-                <Content toDoList={toDoTasks.length > 0  ? <Tasks tasks={toDoTasks} onDelete={deleteTask} updateTask={updateTask}/> : 'No tasks yet.'}
+                <Content addForm={<AddTask add_task={addTask} />} toDoList={toDoTasks.length > 0  ? <Tasks tasks={toDoTasks} onDelete={deleteTask} updateTask={updateTask}/> : 'No tasks yet.'}
                 progressList={progressTasks.length > 0  ? <Tasks tasks={progressTasks} onDelete={deleteTask}/> : 'No tasks yet.'}
                 finList={finishedTasks.length > 0  ? <Tasks tasks={finishedTasks} onDelete={deleteTask}/> : 'No tasks yet.'}
                 />
