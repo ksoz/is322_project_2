@@ -8,12 +8,12 @@ import Content from './Content.js';
 import Sidebar from './Sidebar.js';
 import Footer from './Footer';
 import Tasks from './Tasks';
-import AddTaskForm from './AddTaskForm';
+import AddTask from './AddTask';
 import {useState} from 'react';
 //Create Basic Functional React Component
 
 const App = () => {
-    const [tasks, setTasks] = useState([
+    const [toDoTasks, setToDo] = useState([
         {   
             id: 1, 
             name: 'task 1', 
@@ -24,20 +24,27 @@ const App = () => {
             task_in_progress: false, 
             task_finished: false,
         },
-        {
-                id: 2, 
-                name: 'task 2', 
-                description: 'placeholder description 2', 
-                user: 'kyle', 
-                date: '04102022', 
-                task_new: true, 
-                task_in_progress: false, 
-                task_finished: false,
-            }])
+    ])
+    const [progressTasks, setInProgress] = useState([
+
+    ])
+    const [finishedTasks, setFinished] = useState([
+
+    ])
+    const updateTask = (id, task_new, task_in_progress) => {
+        setInProgress(progressTasks.push((toDoTasks) => toDoTasks.id !== id));
+    }
+
+    const deleteTask = (id) => {
+        setToDo(toDoTasks.filter((toDoTasks) => toDoTasks.id !== id))
+    }
     return (
             <div className="container">
                 <Header/>
-                <Content list={<Tasks tasks={tasks}/>}/>
+                <Content toDoList={toDoTasks.length > 0  ? <Tasks tasks={toDoTasks} onDelete={deleteTask} updateTask={updateTask}/> : 'No tasks yet.'}
+                progressList={progressTasks.length > 0  ? <Tasks tasks={progressTasks} onDelete={deleteTask}/> : 'No tasks yet.'}
+                finList={finishedTasks.length > 0  ? <Tasks tasks={finishedTasks} onDelete={deleteTask}/> : 'No tasks yet.'}
+                />
                 <Sidebar/>
                 <Footer/>
             </div>

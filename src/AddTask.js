@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-function AddTask() {
-    const toDoList = document.querySelector('#col_to_do');
-    const inProgList = document.querySelector('#col_in_progress');
-    const finList = document.querySelector('#col_fin');
+const AddTask = ({add_task}) => {
+    const [text, setText] = ('')
+    return (
+        <form className='add_form'>
+            <div className="form_control">
+            <label>Add Task</label> <br/>
+            <input type="Text" placeholder="add task" value={text} onChange={(e) => setText(e.target.value)}/> <br/>
+            </div>
 
-    toDoList.innerHTML += 
-        '<div class="card">' +
-            '<div class="card_content"></div>' +
-            '<div class="card_footer"></div>' +
-        '</div>';
-    return console.log('test');
+            <input type="submit" value="Save" onClick={add_task}/>
+
+        </form>
+    )
 }
 export default AddTask;

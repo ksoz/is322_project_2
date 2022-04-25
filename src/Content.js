@@ -5,29 +5,26 @@ import './index.css';
 
 import App from './App';
 import Tasks from './Tasks';
-import AddTaskForm from './AddTaskForm';
+import AddTask from './AddTask';
 
-const Content = ({page, list, currentPageIsAddTask, currentPageIsTaskBoard}) => {
-    if (currentPageIsAddTask == true)
-    {
-        return <AddTaskForm/>;
-    }
-    else {
+const Content = ({page, toDoList, progressList, finList, currentPageIsAddTask, currentPageIsTaskBoard}) => {
         return (
             <div id="content">
+                <AddTask/>
                 <div id="col_to_do">
                     <h3>To Do</h3>  
-                    {list}
+                    {toDoList}
                 </div>
                 <div id="col_in_progress">
                     <h3>In Progress</h3>
+                    {progressList}
                 </div>
                 <div id="col_fin">
                     <h3>Finished</h3>
+                    {finList}
                 </div>
             </div>
         );
-    }
 }
 
 Content.defaultProps = {
